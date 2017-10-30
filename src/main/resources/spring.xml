@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+    <bean id="user" class="com.tanzk.entity.User">
+        <property name="name"      value="robins" />
+        <property name="age"      value="45"></property>
+    </bean>
+
+    <bean id="autoProxyCreator" class="com.tanzk.aop.proxy.AspectJAwareAdvisorAutoProxyCreator"></bean>
+
+    <bean id="timeInterceptor" class="com.tanzk.aop.interceptor.TimerInterceptor"></bean>
+
+    <bean id="aspectjAspect" class="com.tanzk.aop.proxy.AspectJExpressionPointcutAdvisor">
+        <property name="advice" ref="timeInterceptor"></property>
+        <property name="expression" value="execution(* com.tanzk.entity.User.desc*(..))"></property>
+    </bean>
+</beans>
